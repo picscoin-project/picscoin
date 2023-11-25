@@ -124,7 +124,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0xf178b4dfc9792be411b7f0b076558cdf8d04714fc746ef4884c4de875478487f"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("seed.picsco.in");
+        vSeeds.emplace_back("icanhazip.com");
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
@@ -135,8 +135,6 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
         bech32_hrp = "pic";
-
-        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
         fDefaultConsistencyChecks = true;
         fRequireStandard = true;
@@ -252,7 +250,6 @@ public:
 
         bech32_hrp = "tpic";
 
-        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
