@@ -90,20 +90,21 @@ public:
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1546023155; // December 28,2018
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1547251200; // January 12th, 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1700271191; // November 18th, 2023 
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1700357591; //November 19th, 2023
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1546023155; // December 28,2018
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1578787200; // January 12th, 2020
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1700271191; // in 1 day
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1700357591; // in 2 days
+
 
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000035a40d452684e");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000173d0953e");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x83275c7af68da129f5be38e2f21feee241049fc6be42a4f91b6adc160b2dffca"); //4032
+        consensus.defaultAssumeValid = uint256S("0x669db81a07c6607b079a9957fd3a57799c3b317059104df6a937a6799ba3c80d"); //3988
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -115,8 +116,8 @@ public:
         pchMessageStart[3] = 0x74;
         nDefaultPort = 1337;
         nPruneAfterHeight = 1000000;
-        m_assumed_blockchain_size = 0.1355;
-        m_assumed_chain_state_size = 0.0131;
+        m_assumed_blockchain_size = 0.0135;
+        m_assumed_chain_state_size = 0.0013;
 
         genesis = CreateGenesisBlock(1700129818, 74162, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -127,9 +128,9 @@ public:
         vSeeds.emplace_back("icanhazip.com");
 
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55); // Regular addresses will now begin with X
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,15);
+        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,15); // segwit or paper wallet public addressing schemes begin with 7
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,176);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
@@ -142,36 +143,16 @@ public:
 
         checkpointData = {
             {
-                {  1500, uint256S("0xf912963a40fd1f049e23fd3f0b173dccdb012ee0f40146b66defd5db9af9e707")},
-                {  4032, uint256S("0x83275c7af68da129f5be38e2f21feee241049fc6be42a4f91b6adc160b2dffca")},
-                {  8445, uint256S("0x763e60c05a26fcb7bf95bdb0a0b8c47b5f39d7fdc08f75c8cad862e870f15047")},
-                {  10656, uint256S("0x4569782247e8800f972bddeb8858a3be4cf20c3fa6ccc3561713f5b190e37f5e")},
-                {  12164, uint256S("0x610f1e821ca74a088bc694bde28cecebfeeb4189d9c65510716f9e8b382bd463")},
-                {  13180, uint256S("0xe717bcbf2aa1c4b35b2ad8ce9695650a83a118922b6a6499da38d2938ada42c8")},
-                {  19485, uint256S("0xe7b2231dd7cdc1921faa2f2dbfd648f176883f6afe40f75a7bdd4f71bfc7d7fb")},
-                {  21337, uint256S("0xfde57aa89a5034023309b1d2374fcfb92301f146519819eacc541ab2254e8f08")},
-                {  25695, uint256S("0x3ec7eac396e7392f2410b6aea3680144a27bb81a998c1c5d44423c5c1397a8be")},
-                {  28695, uint256S("0xf3180985dd4ac67374980979c48bef060ea6f409e42b064ceee77e5b7b7f772c")},
-                {  32301, uint256S("0xf5837e12c2f022b2c3691e5dd48d1eb030ed94a6186fac433f3840c2173185ea")},
-                {  41337, uint256S("0x5547e972db634e9a19f7a633c1abab500dbf015a792cd7c1ca893302bdf8898d")},
-                {  51337, uint256S("0xcaaa8492dd084eacd6cd6390435428a9a0581fd9b6873923baa19d32cebfee1a")},
-                {  58462, uint256S("0xe1dd389dce130474da90a36b4b4a07aa51690934bb540dff1e9e32508547aa79")},
-                {  60032, uint256S("0x9250a2c237c601f68040dda54443f7d28638d730bbbe2dab35773ca3907f9da3")},
-                {  90036, uint256S("0x5930aa967e17ca7e157184e99b769ee3861607890cca12685928d4beee3499fc")},
-               {  116251, uint256S("0xbafcbdbc01043208daa2ac7f94eab3d32062fc4d76556420b0480b2a005344ed")},
-               {  123337, uint256S("0x47e873b5af91c291037a37033cf2aa8765f098fafce8de1944ba4b5823d9ec06")},
-               {  133337, uint256S("0xedffab16cf04d55971b77445ecfab4f12ebd17e58686c57a346acdb8e14c22f8")},
-	       {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
-               { 286932, uint256S("0xc0222c5b5dc517379f2db7a0f8cd12301830002b276612afeda6a84abe4d0af9")},
-               { 304604, uint256S("0x662567587304e7df1c1e0694e92b35ae8c2c242b83d5bbf0fd356ce4e5049d93")},
-	    }
+                {  3988, uint256S("0x669db81a07c6607b079a9957fd3a57799c3b317059104df6a937a6799ba3c80d")},
+		{  4029, uint256S("0xaf190c7a354ff614bfb199a1acd4cee512fd2605e95dd8c5cf242d1280c2531a")},
+      	    }
         };
 		
         chainTxData = ChainTxData{
-            // Data from rpc: getchaintxstats 4096 a601455787cb65ffc325dda4751a99cf01d1567799ec4b04f45bb05f9ef0cbde
-            /* nTime    */ 1629464538,
-            /* nTxCount */ 380162,
-            /* dTxRate  */ 0.03
+            // Data from rpc: getchaintxstats 40299 af190c7a354ff614bfb199a1acd4cee512fd2605e95dd8c5cf242d1280c2531a
+            /* nTime    */ 1700893268,
+            /* nTxCount */ 4031,
+            /* dTxRate  */ 0.01
         };
 
         /* enable fallback fee on mainnet */
